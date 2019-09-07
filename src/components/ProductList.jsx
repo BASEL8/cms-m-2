@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Product = ({
+const ProductList = ({
   product: { images, name, price, description, availability, _id }
 }) => {
   const [showImages, setShowImages] = useState(false);
@@ -50,4 +50,4 @@ const Product = ({
     </div>
   );
 };
-export default Product;
+export default ProductList;

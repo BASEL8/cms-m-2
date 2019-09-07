@@ -1,11 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Product from "./Product";
 import Nav from "./Nav";
 import FirstPage from "./FirstPage";
 import Footer from "./footer";
-import axios from "axios";
 
+const Main = () => {
+  return (
+    <div className='d-flex flex-column App-header p-3'>
+      <Router>
+        <Nav />
+
+        <Route path='/' exact component={props => <FirstPage {...props} />} />
+        <Route
+          path='/product/:id'
+          exact
+          component={props => <Product {...props} />}
+        />
+      </Router>
+      <Footer />
+    </div>
+  );
+};
+export default Main;
+
+/*
 const Main = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -44,5 +63,4 @@ const Main = () => {
     </div>
   );
 };
-
-export default Main;
+*/
