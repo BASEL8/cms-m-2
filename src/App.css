@@ -8,14 +8,73 @@
 }
 
 .App-header {
-  background-color: #585c63;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #1A1A1A;
+}
+
+.topNav {
+  color: #1a1a1a;
+  font-family: Arial, "Arial Unicode MS", Helvetica, "DejaVu Sans", "Lucida Sans Unicode", sans-serif;
+  font-size: 10px;
+  line-height: 18px;
+  letter-spacing: 0.7px;
+  font-weight: 700;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+  text-decoration: none solid rgb(26, 26, 26);
+  text-align: start;
+  text-indent: 0px;
+}
+
+.cart {
+  width: 350px;
+  min-height: 400px;
+  max-height: 500px;
+  position: absolute;
+  top: 35px;
+  background: #ffffff;
+  z-index: 9999;
+  padding: 5px;
+  border: 1px solid #E3E3E3;
+}
+
+.cartItem {
+  height: 130px;
+  width: 100%;
+  border-bottom: 1px solid #E3E3E3;
+
+}
+
+.cartItemButton {
+  font-size: 8px;
+  font-family: Arial, "Arial Unicode MS", Helvetica, "DejaVu Sans", "Lucida Sans Unicode", sans-serif;
+  letter-spacing: 0.9px;
+
+
+}
+
+.cartItemListPrice {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.cartItemListName {
+  font-size: 10px;
+  font-weight: 700;
+  color: #1a1a1a
+}
+
+.cartItemListAvailability {
+  font-size: 13px;
+  color: #1a1111
 }
 
 ul {
