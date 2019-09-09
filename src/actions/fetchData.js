@@ -36,7 +36,7 @@ export const fetchProduct = (id, setMainImage) => {
                 "Content-Type": "application/json"
             },
             data: {
-                populate: 1,
+                populate: 3,
                 filter: {
                     _id: id
                 }

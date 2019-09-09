@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import BuyButton from "./Buttons/BuyButton";
 import { connect } from "react-redux";
 import { fetchProduct } from "../actions/fetchData";
+import ProductTabs from "./ProductTabs";
+import { Link } from "react-router-dom";
 const Product = ({
   fetchProduct,
   fetchDataReducer: { product },
@@ -15,10 +17,19 @@ const Product = ({
   useEffect(() => {
     fetchProduct(id, setMainImage);
   }, [fetchProduct, id]);
-  const { name, price, description, availability, images } = product;
+  const {
+    name,
+    price,
+    description,
+    availability,
+    images,
+    reviews,
+    color,
+    _id
+  } = product;
   return (
     <div
-      className='flex-grow-1 w-100 h-100 p-2 pt-5 flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap
+      className='flex-grow-1 w-100 h-100 p-2 pt-5 flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap text-capitalize
     '
     >
       <div className='flex-grow-1 d-flex justify-content-center align-items-start col'>
@@ -40,34 +51,90 @@ const Product = ({
               </div>
             ))}
         </div>
-        <div className='flex-grow-1'>
+        <div className='flex-grow-1 d-flex justify-content-center align-items-start'>
           <img src={mainImage} alt='' className='product_image_' />
         </div>
       </div>
-      <div className='flex-grow-1 d-flex flex-column justify-content-start align-items-start col '>
-        <h3>{name}</h3>
-        <p style={{ fontSize: 12 }}>
-          <strong>color</strong>: red
+      <div className='flex-grow-1 d-flex flex-column justify-content-start align-items-start col pb-5 '>
+        <p
+          style={{
+            fontSize: 14,
+            fontWeight: 500
+          }}
+        >
+          marke >
         </p>
-        <h6>{availability}</h6>
-        <h5>{price} kr</h5>
-        <h5>{description}</h5>
+        <p
+          style={{
+            fontSize: 14,
+            fontWeight: 700
+          }}
+        >
+          {name}
+        </p>
+        <div className='d-flex'>
+          {color &&
+            color.length > 1 &&
+            color.map(
+              ({ value }) =>
+                value.link && (
+                  <Link
+                    to={`/product/${value.link._id}`}
+                    className='d-flex justify-content-center w-100'
+                    key={value.link._id}
+                  >
+                    <div className='mr-1'>
+                      <img
+                        src={`http://localhost:9090${value.link.images[0].path}`}
+                        alt={value.color}
+                        style={{
+                          height: 50,
+                          borderBottom:
+                            _id === value.link._id && "4px solid black",
+                          marginBottom: 5
+                        }}
+                      />
+                      <p style={{ fontSize: 11 }}>
+                        <strong> {value.color}</strong>
+                      </p>
+                    </div>
+                  </Link>
+                )
+            )}
+        </div>
+
+        <h5 style={{ fontWeight: 700, fontSize: 15 }}>
+          {price} kr{" "}
+          <span
+            style={{
+              fontWeight: 100,
+              fontSize: 11,
+              color: "#D1D1D1",
+              paddingLeft: 8
+            }}
+          >
+            Inkl.moms
+          </span>
+        </h5>
+        <h6 style={{ fontWeight: 100, fontSize: 11 }}>
+          In stock : {availability}
+        </h6>
         <input
           type='number'
           value={amount}
           max={availability}
+          min={1}
           onChange={e => setAmount(parseInt(e.target.value))}
-          className='p-2 border-0 rounded'
+          className='p-2 border rounded w-100'
         />
         <div className='w-100 pt-3 d-flex align-items-center'>
           <BuyButton product={product} amount={amount} setError={setError} />
-          <button className='btn p-2 bg-danger text-light'>
+          <button className='btn p-2 text-light border-dark'>
             <svg
-              className='dx-icon _8lxbtC PoQAPA'
-              height='40px'
-              width='40px'
+              height='25px'
+              width='25px'
               focusable='false'
-              fill='currentColor'
+              fill='black'
               viewBox='0 0 16 16'
               aria-hidden='true'
             >
@@ -75,9 +142,20 @@ const Product = ({
             </svg>
           </button>
         </div>
-        <p>{amountError}</p>
+        <p
+          style={{
+            fontWeight: 100,
+            fontSize: 10,
+            color: "#D1D1D1",
+            paddingTop: 10
+          }}
+        >
+          {amountError}
+        </p>
       </div>
-      <div className='p-5 bg-danger w-100'></div>
+      <div className='pt-4 w-100'>
+        <ProductTabs reviews={reviews} description={description} />
+      </div>
     </div>
   );
 };

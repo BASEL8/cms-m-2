@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import { removeProduct } from "../actions/cartActions";
 const CartItem = ({
-  item: { name, amount, images, price, description, totalPrice, _id }
+  item: { name, amount, images, price, description, totalPrice, _id },
+  removeProduct
 }) => {
-  console.log(images);
+  console.log(1);
   return (
     <div className='w-100 cartItem d-flex p-2'>
       <div className='col-4 d-flex justify-content-center align-items-center'>
@@ -19,14 +22,16 @@ const CartItem = ({
         </div>
         <div className='flex-grow-1 pt-2'>
           <div> quantity : {amount}</div>
-          <div>{description}</div>
           <div>item price : {price} kr</div>
         </div>
         <div className='d-flex w-100 justify-content-between'>
           <button className='btn  btn-sm w-100  border-right cartItemButton'>
             Add to wishlist
           </button>
-          <button className='btn border-0 w-100 btn-sm cartItemButton'>
+          <button
+            className='btn border-0 w-100 btn-sm cartItemButton'
+            onClick={() => removeProduct(_id)}
+          >
             Remove product
           </button>
         </div>
@@ -34,4 +39,7 @@ const CartItem = ({
     </div>
   );
 };
-export default CartItem;
+export default connect(
+  null,
+  { removeProduct }
+)(CartItem);
