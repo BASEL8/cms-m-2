@@ -27,6 +27,7 @@ const Product = ({
     color,
     _id
   } = product;
+
   return (
     <div
       className='flex-grow-1 w-100 h-100 p-2 pt-5 flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap text-capitalize

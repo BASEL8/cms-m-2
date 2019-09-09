@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../actions/cartActions";
 const BuyButton = ({ product, addToCart, cartReducer, amount, setError }) => {
-  const { error } = cartReducer;
+  const { error, items } = cartReducer;
   setError(error);
+
   const { price } = product;
   return (
     <>
       <button
         className='btn h-100 flex-grow-1 p-2 pl-4 pr-4  mr-4 text-light d-flex justify-content-between buttonBgColor font-weight-bold'
-        onClick={() =>
+        onClick={() => {
           addToCart({
             ...product,
             amount,
             totalPrice: parseInt(price) * parseInt(amount)
-          })
-        }
+          });
+        }}
       >
         Buy
         <svg

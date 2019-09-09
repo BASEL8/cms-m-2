@@ -8,7 +8,6 @@ const FirstPage = ({ fetchData, fetchDataReducer: { products } }) => {
     fetchData();
   }, [fetchData]);
   const man = products.filter(({ category }) => category === "man");
-  console.log(man);
   const women = products.filter(({ category }) => category === "women");
   const kids = products.filter(({ category }) => category === "kids");
 

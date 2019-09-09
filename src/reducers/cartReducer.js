@@ -2,9 +2,15 @@ import {
     ADD_TO_CART,
     REMOVE_PRODUCT
 } from "../actions/types";
+Storage.prototype.setObject = function (key, value) {
+    this.setItem(key, JSON.stringify(value));
+}
+Storage.prototype.getObject = function (key) {
+    return JSON.parse(this.getItem(key));
+};
+var data = localStorage.getObject("cartShopping");
 const INITIAL_STATE = {
-    items: [],
-    error: null
+    ...data
 };
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -22,6 +28,12 @@ export default (state = INITIAL_STATE, action) => {
                 } else {
                     items[index].amount = items[index].amount + action.payload.amount;
                     items[index].totalPrice = items[index].amount * parseInt(items[index].price)
+                    localStorage.setObject('cartShopping', {
+                        ...state,
+                        items,
+                        error: null
+                    })
+
                     return {
                         ...state,
                         items,
@@ -29,6 +41,12 @@ export default (state = INITIAL_STATE, action) => {
                     };
                 }
             } else {
+                localStorage.setObject('cartShopping', {
+                    ...state,
+                    items: [...items, action.payload],
+                    error: null
+                })
+
                 return {
                     ...state,
                     items: [...items, action.payload],
@@ -36,7 +54,12 @@ export default (state = INITIAL_STATE, action) => {
                 }
             };
         case REMOVE_PRODUCT:
-            console.log(action.payload)
+            localStorage.setObject('cartShopping', {
+                state,
+                items: state.items.filter(({
+                    _id
+                }) => _id !== action.payload)
+            })
             return {
                 state, items: state.items.filter(({
                     _id

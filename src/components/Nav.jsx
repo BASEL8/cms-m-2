@@ -61,9 +61,12 @@ const Nav = ({ cartReducer }) => {
                   <p>Total</p>
                   <p style={{ fontSize: 15 }}>{totalPrice}</p>
                 </div>
-                <button className='buttonBgColor p-2 rounded border-0 text-light'>
-                  to Shopping Cart
-                </button>
+
+                <Link to='/shoppingCart/' className='w-100'>
+                  <button className='buttonBgColor p-2 rounded border-0 text-light w-100'>
+                    to Shopping Cart
+                  </button>
+                </Link>
               </div>
             </div>
           )}
