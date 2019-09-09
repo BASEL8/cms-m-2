@@ -5,6 +5,7 @@
   font-style: normal;
   font-variant: normal;
   text-decoration: none solid rgb(26, 26, 26);
+  text-decoration: none !important;
 }
 
 .App {
@@ -131,4 +132,27 @@ ul {
 .sideImage {
   height: 50px;
   width: 50px;
+}
+
+.CarouselHolder>div:first-child {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel.carousel-slider {
+  height: 100%;
+}
+
+.slider,
+.slider-wrapper,
+.slide {
+  height: 100%;
+}
+
+.slide.selected {
+  background: white;
+}
+
+a {
+  color: black !important
 }

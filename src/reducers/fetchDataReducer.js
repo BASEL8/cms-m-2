@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UPDATE_DATA:
-            console.log(action.payload)
             return {
                 ...state, products: [...action.payload]
             }

@@ -3,7 +3,7 @@ import {
     UPDATE_DATA,
     FETCH_PRODUCT
 } from "./types";
-export const fetchData = () => {
+export const fetchData = (productsFilter) => {
     return (dispatch) => {
         axios({
             method: "post",
