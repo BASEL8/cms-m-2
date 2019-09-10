@@ -7,12 +7,18 @@ import CartItem from "./CartItem";
 const Nav = ({ cartReducer }) => {
   const [toggleCart, setToggleCart] = useState(false);
   const { items } = cartReducer;
-  const totalItems = items.reduce(function(previous, current) {
-    return previous + current.amount;
-  }, 0);
-  const totalPrice = items.reduce(function(previous, current) {
-    return previous + current.totalPrice;
-  }, 0);
+  const totalItems =
+    (items &&
+      items.reduce(function(previous, current) {
+        return previous + current.amount;
+      }, 0)) ||
+    0;
+  const totalPrice =
+    (items &&
+      items.reduce(function(previous, current) {
+        return previous + current.totalPrice;
+      }, 0)) ||
+    0;
 
   return (
     <div className='shadow-sm h-100 topNav p-3 d-flex justify-content-center align-items-center'>
@@ -44,13 +50,14 @@ const Nav = ({ cartReducer }) => {
                 Shopping cart
               </h6>
               <div className='flex-grow-1  overflow-auto'>
-                {items.map(item => (
-                  <CartItem
-                    totalItems={totalItems}
-                    key={item._id}
-                    item={item}
-                  />
-                ))}
+                {items &&
+                  items.map(item => (
+                    <CartItem
+                      totalItems={totalItems}
+                      key={item._id}
+                      item={item}
+                    />
+                  ))}
               </div>
               <div className='p-1 pt-3 d-flex flex-column'>
                 <div className=' d-flex justify-content-between align-items-center'>

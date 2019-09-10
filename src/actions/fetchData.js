@@ -7,7 +7,7 @@ export const fetchData = (productsFilter) => {
     return (dispatch) => {
         axios({
             method: "post",
-            url: "http://localhost:9090/api/collections/get/products?token=9c31ae75f9b25dcb7950a9606518f3",
+            url: "http://localhost:9191/api/collections/get/products?token=9c31ae75f9b25dcb7950a9606518f3",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -34,7 +34,7 @@ export const fetchProduct = (id, setMainImage) => {
     return (dispatch) => {
         axios({
             method: "post",
-            url: "http://localhost:9090/api/collections/get/products?token=9c31ae75f9b25dcb7950a9606518f3",
+            url: "http://localhost:9191/api/collections/get/products?token=9c31ae75f9b25dcb7950a9606518f3",
             headers: {
                 "Content-Type": "application/json"
             },

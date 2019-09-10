@@ -2,7 +2,9 @@ import axios from 'axios'
 import {
     ADD_TO_CART,
     REMOVE_PRODUCT,
-    ORDER_CREATE
+    ORDER_DONE,
+    ORDER_WAITING,
+    ORDER_FAIL
 } from "./types";
 
 export const addToCart = (product) => {
@@ -20,20 +22,21 @@ export const removeProduct = (id) => {
 export const sendOrderRequest = (data) => {
 
     return (dispatch) => {
-        axios.post("http://localhost:9090/api/collections/save/customers?token=9c31ae75f9b25dcb7950a9606518f3", {
+        dispatch({
+            type: ORDER_WAITING
+        })
+        axios.post("http://localhost:9191/api/collections/save/customers?token=9c31ae75f9b25dcb7950a9606518f3", {
                 data
             })
             .then((res) => {
-                console.log(res)
-                return dispatch({
-                    type: ORDER_CREATE
-                })
+                console.log(JSON.parse(res.config.data))
+                setTimeout(function () {
+                    //do what you need here
+                    return dispatch({
+                        type: ORDER_DONE
+                    })
+                }, 4000);
+
             });
     };
-
-
-
-
-
-    ;
 }

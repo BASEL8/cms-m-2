@@ -1,7 +1,9 @@
 import {
     ADD_TO_CART,
     REMOVE_PRODUCT,
-    ORDER_CREATE
+    ORDER_FAIL,
+    ORDER_DONE,
+    ORDER_WAITING
 } from "../actions/types";
 Storage.prototype.setObject = function (key, value) {
     this.setItem(key, JSON.stringify(value));
@@ -11,7 +13,9 @@ Storage.prototype.getObject = function (key) {
 };
 var data = localStorage.getObject("cartShopping");
 const INITIAL_STATE = {
-    ...data
+    ...data,
+    error: '',
+    loading: false
 };
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -19,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
             const {
                 items
             } = state;
-            if (items.some(product => product._id === action.payload._id)) {
+            if (items && items.some(product => product._id === action.payload._id)) {
                 const index = items.findIndex(x => x._id === action.payload._id)
                 if (index !== -1 && (items[index].amount + action.payload.amount) > parseInt(items[index].availability)) {
                     return {
@@ -44,13 +48,13 @@ export default (state = INITIAL_STATE, action) => {
             } else {
                 localStorage.setObject('cartShopping', {
                     ...state,
-                    items: [...items, action.payload],
+                    items: items ? [...state.items, action.payload] : [action.payload],
                     error: null
                 })
 
                 return {
                     ...state,
-                    items: [...items, action.payload],
+                    items: items ? [...state.items, action.payload] : [action.payload],
                     error: null
                 }
             };
@@ -66,9 +70,14 @@ export default (state = INITIAL_STATE, action) => {
                     _id
                 }) => _id !== action.payload)
             };
-        case ORDER_CREATE:
-            console.log(action)
-            return state
+        case ORDER_DONE:
+            localStorage.setObject('cartShopping', [])
+            return INITIAL_STATE;
+        case ORDER_WAITING:
+            return {
+                ...state,
+                loading: true
+            };
         default:
             return state;
     }
