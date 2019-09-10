@@ -1,6 +1,7 @@
 import {
     ADD_TO_CART,
-    REMOVE_PRODUCT
+    REMOVE_PRODUCT,
+    ORDER_CREATE
 } from "../actions/types";
 Storage.prototype.setObject = function (key, value) {
     this.setItem(key, JSON.stringify(value));
@@ -65,6 +66,9 @@ export default (state = INITIAL_STATE, action) => {
                     _id
                 }) => _id !== action.payload)
             };
+        case ORDER_CREATE:
+            console.log(action)
+            return state
         default:
             return state;
     }

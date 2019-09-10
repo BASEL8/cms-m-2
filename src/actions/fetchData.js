@@ -15,10 +15,13 @@ export const fetchData = (productsFilter) => {
                 populate: 1
             }
         }).then(({
+            data,
             data: {
-                entries
+                entries,
+                fields
             }
         }) => {
+            console.log(data)
             dispatch({
                 type: UPDATE_DATA,
                 payload: entries

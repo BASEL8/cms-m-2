@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import FirstPage from "./FirstPage";
 import Footer from "./footer";
 import ShoppingCart from "./ShoppingCart";
+import Checkout from "./Checkout";
 const Main = () => {
   return (
     <div className='d-flex flex-column App-header pl-3 pr-3 pt-0'>
@@ -20,6 +21,12 @@ const Main = () => {
           path='/shoppingCart'
           exact
           component={props => <ShoppingCart {...props} />}
+        />
+
+        <Route
+          path='/checkout'
+          exact
+          component={props => <Checkout {...props} />}
         />
       </Router>
       <Footer />

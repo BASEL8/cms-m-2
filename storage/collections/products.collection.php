@@ -176,7 +176,7 @@
           0 => 
           array (
             'type' => 'set',
-            'label' => 'review',
+            'label' => 'color',
             'options' => 
             array (
               'fields' => 
@@ -268,7 +268,7 @@
   'sortable' => false,
   'in_menu' => false,
   '_created' => 1567753226,
-  '_modified' => 1568036734,
+  '_modified' => 1568116167,
   'color' => '#D8334A',
   'acl' => 
   array (

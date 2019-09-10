@@ -25,7 +25,7 @@
     ),
     1 => 
     array (
-      'name' => 'adress',
+      'name' => 'email',
       'label' => '',
       'type' => 'text',
       'default' => '',
@@ -43,7 +43,7 @@
     ),
     2 => 
     array (
-      'name' => 'total_price',
+      'name' => 'adress',
       'label' => '',
       'type' => 'text',
       'default' => '',
@@ -61,7 +61,61 @@
     ),
     3 => 
     array (
-      'name' => 'products',
+      'name' => 'adress_2',
+      'label' => '',
+      'type' => 'text',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
+    4 => 
+    array (
+      'name' => 'city',
+      'label' => '',
+      'type' => 'text',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
+    5 => 
+    array (
+      'name' => 'zip',
+      'label' => '',
+      'type' => 'text',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
+    6 => 
+    array (
+      'name' => 'oldItems',
       'label' => '',
       'type' => 'object',
       'default' => '',
@@ -80,11 +134,71 @@
       array (
       ),
     ),
+    7 => 
+    array (
+      'name' => 'items',
+      'label' => '',
+      'type' => 'repeater',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+        'field' => 
+        array (
+          'type' => 'set',
+          'label' => 'Products',
+          'display' => '$value',
+          'options' => 
+          array (
+            'display' => '{qty} x {producttitle}',
+            'fields' => 
+            array (
+              0 => 
+              array (
+                'type' => 'text',
+                'name' => 'qty',
+                'label' => 'Qty',
+                'options' => 
+                array (
+                  'type' => 'number',
+                ),
+              ),
+              1 => 
+              array (
+                'type' => 'text',
+                'name' => 'producttitle',
+                'label' => 'Product title',
+              ),
+              2 => 
+              array (
+                'type' => 'collectionlink',
+                'name' => 'product',
+                'label' => 'Product',
+                'display' => '$value',
+                'options' => 
+                array (
+                  'link' => 'products',
+                  'multiple' => false,
+                  'limit' => false,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
   ),
   'sortable' => false,
   'in_menu' => false,
   '_created' => 1567753564,
-  '_modified' => 1567959357,
+  '_modified' => 1568119703,
   'color' => '#FFCE54',
   'acl' => 
   array (
