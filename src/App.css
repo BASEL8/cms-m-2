@@ -456,3 +456,7 @@ a {
     transform: scale(0.9);
   }
 }
+
+.MuiBox-root.MuiBox-root-100 {
+  padding: 0
+}

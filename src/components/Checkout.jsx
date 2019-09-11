@@ -63,7 +63,6 @@ const Checkout = ({ cartReducer: { items, loading }, sendOrderRequest }) => {
     }
     valueState && sendOrderRequest(values);
   };
-  items && console.log(items.length);
   return (
     <div
       className='flex-grow-1 w-100 p-5 d-flex justify-content-center align-items-stretch'

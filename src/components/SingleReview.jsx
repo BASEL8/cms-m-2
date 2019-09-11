@@ -1,9 +1,9 @@
 import React from "react";
 const SingleReview = ({ value: { content, name, rating } }) => {
   return (
-    <div className='mb-4'>
+    <div className='mb-2 p-2 shadow-sm border-bottom border-light w-100'>
       <div>
-        <div>{name}</div>
+        <div> {name}</div>
         <div>
           {Array(rating)
             .fill("")

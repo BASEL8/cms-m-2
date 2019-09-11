@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -7,6 +7,8 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import SingleReview from "./SingleReview";
 import Rating from "react-rating";
+import { connect } from "react-redux";
+import { reviewProduct } from "../actions/fetchData";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,13 +43,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductTabs = ({ reviews, description }) => {
+const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = useState(2);
+  const [formValues, setFormValues] = useState({
+    name: "",
+    content: "",
+    rating: 1
+  });
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const SubmitReviewProduct = e => {
+    e.preventDefault();
+    const reviews = [
+      ...product.reviews,
+      {
+        value: { name: "basel", content: "text", rating: 1 },
+        fields: { type: "set", label: "review" }
+      }
+    ];
+    product = { ...product, reviews };
+
+    console.log(product);
+    reviewProduct(product);
+  };
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+  const { name, review, rating } = formValues;
   return (
     <div className={classes.root}>
       <AppBar position='static'>
@@ -128,24 +153,33 @@ const ProductTabs = ({ reviews, description }) => {
         </div>
       </TabPanel>
       <TabPanel value={value} index={2} style={{ minHeight: 300 }}>
-        <div className='d-flex h-100 justify-content-around  '>
-          <div className='p-3 col pl-5 pr-5 w-75 mr-2 border'>
+        <div className='d-flex h-100 justify-content-around  bg-white p-4'>
+          <div className='p-2 col pr-5 w-75 mr-2 shadow-sm'>
             <p className='font-weight-lighter text-monospace text-muted'>
               write your review
             </p>
-            <form>
+            <form onSubmit={SubmitReviewProduct}>
               <input
+                name='name'
                 placeholder='Name'
                 type='text'
-                className='p-2 border rounded w-100'
+                className='p-1 border rounded w-100'
+                onChange={handleInputChange}
+                value={name}
               />
               <textarea
-                className='p-2 border rounded w-100 mt-3'
+                name='content'
+                className='p-1 border rounded w-100 mt-3'
                 placeholder='Review'
+                onChange={handleInputChange}
+                value={review}
               />
               <div className='mt-3 mb-3'>
                 <Rating
-                  onChange={value => console.log(value)}
+                  onChange={value =>
+                    setFormValues({ ...formValues, rating: value })
+                  }
+                  initialRating={rating}
                   emptySymbol={
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -176,8 +210,8 @@ const ProductTabs = ({ reviews, description }) => {
             </form>
           </div>
           <div
-            className='col-4 overflow-auto d-flex justify-content-center align-items-center border ml-2'
-            style={{ maxHeight: 500 }}
+            className='col-4 overflow-auto d-flex justify-content-start align-items-start ml-2 d-flex flex-column justify-content-start'
+            style={{ maxHeight: 300 }}
           >
             {reviews ? (
               reviews.map(({ value }, i) => (
@@ -194,5 +228,9 @@ const ProductTabs = ({ reviews, description }) => {
     </div>
   );
 };
+const mapStateTpProps = ({ fetchDataReducer }) => ({ fetchDataReducer });
 
-export default ProductTabs;
+export default connect(
+  mapStateTpProps,
+  { reviewProduct }
+)(ProductTabs);

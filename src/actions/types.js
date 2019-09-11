@@ -5,3 +5,4 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT"
 export const ORDER_DONE = 'ORDER_DONE'
 export const ORDER_WAITING = 'ORDER_WAITING'
 export const ORDER_FAIL = 'ORDER_FAIL'
+export const REVIEW_PRODUCT = 'REVIEW_PRODUCT'

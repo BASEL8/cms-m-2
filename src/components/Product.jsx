@@ -155,7 +155,11 @@ const Product = ({
         </p>
       </div>
       <div className='pt-4 w-100'>
-        <ProductTabs reviews={reviews} description={description} />
+        <ProductTabs
+          product={product}
+          reviews={reviews}
+          description={description}
+        />
       </div>
     </div>
   );
