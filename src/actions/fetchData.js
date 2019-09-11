@@ -53,9 +53,32 @@ export const fetchProduct = (id, setMainImage) => {
                 type: FETCH_PRODUCT,
                 payload: entries[0]
             })
-            setMainImage(`http://localhost:9090${entries[0].images[0].path}`);
+            setMainImage(`http://localhost:9191${entries[0].images[0].path}`);
 
         });
+        axios({
+            method: "post",
+            url: "http://localhost:9191/api/collections/get/products?token=9c31ae75f9b25dcb7950a9606518f3",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                populate: 1
+            }
+        }).then(({
+            data,
+            data: {
+                entries,
+                fields
+            }
+        }) => {
+            dispatch({
+                type: UPDATE_DATA,
+                payload: entries
+            })
+        });
+
+
 
     };
 }

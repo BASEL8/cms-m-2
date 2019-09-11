@@ -30,7 +30,7 @@ const Product = ({
 
   return (
     <div
-      className='flex-grow-1 w-100 h-100 p-2 pt-5 flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap text-capitalize
+      className='flex-grow-1 w-100 h-100 p-2  flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap text-capitalize
     '
     >
       <div className='flex-grow-1 d-flex justify-content-center align-items-start col'>
@@ -41,11 +41,11 @@ const Product = ({
                 key={index}
                 className='pb-1 mb-1 sideImage'
                 onMouseOver={() =>
-                  setMainImage(`http://localhost:9090${image.path}`)
+                  setMainImage(`http://localhost:9191${image.path}`)
                 }
               >
                 <img
-                  src={`http://localhost:9090${image.path}`}
+                  src={`http://localhost:9191${image.path}`}
                   alt={image.title}
                   className='h-100'
                 />
@@ -86,7 +86,7 @@ const Product = ({
                   >
                     <div className='mr-1'>
                       <img
-                        src={`http://localhost:9090${value.link.images[0].path}`}
+                        src={`http://localhost:9191${value.link.images[0].path}`}
                         alt={value.color}
                         style={{
                           height: 50,

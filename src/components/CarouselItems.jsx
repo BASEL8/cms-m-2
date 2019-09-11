@@ -45,7 +45,7 @@ const CarouselItems = ({ products, interval, category }) => {
               >
                 {shuffle([
                   <img
-                    src={`http://localhost:9090${images[0].path}`}
+                    src={`http://localhost:9191${images[0].path}`}
                     alt={name}
                     style={{ height: "100%", width: "auto", margin: 10 }}
                     key={Math.random()}
@@ -54,7 +54,7 @@ const CarouselItems = ({ products, interval, category }) => {
                     <p>{name}</p>
                   </div>,
                   <img
-                    src={`http://localhost:9090${images[1].path}`}
+                    src={`http://localhost:9191${images[1].path}`}
                     alt={name}
                     style={{ height: "70%", width: "auto", margin: 10 }}
                     key={Math.random()}

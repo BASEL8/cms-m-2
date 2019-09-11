@@ -12,7 +12,7 @@ const CartItem = ({
         <>
           <div className='col-4 d-flex justify-content-center align-items-center'>
             <img
-              src={`http://localhost:9090${images[0].path}`}
+              src={`http://localhost:9191${images[0].path}`}
               className='h-75'
               alt={name}
             />

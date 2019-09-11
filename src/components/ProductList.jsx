@@ -6,7 +6,7 @@ const ProductList = ({
 }) => {
   const [showImages, setShowImages] = useState(false);
   const [mainImage, setMainImage] = useState(
-    `http://localhost:9090${images[0].path}`
+    `http://localhost:9191${images[0].path}`
   );
   return (
     <div className='col-md-3 col-xs-6 d-flex p-1'>
@@ -31,11 +31,11 @@ const ProductList = ({
                     key={index}
                     className='p-1 mb-1 sideImage'
                     onMouseOver={() =>
-                      setMainImage(`http://localhost:9090${image.path}`)
+                      setMainImage(`http://localhost:9191${image.path}`)
                     }
                   >
                     <img
-                      src={`http://localhost:9090${image.path}`}
+                      src={`http://localhost:9191${image.path}`}
                       alt={image.title}
                       className='h-100'
                     />

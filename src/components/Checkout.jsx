@@ -49,6 +49,7 @@ const Checkout = ({ cartReducer: { items, loading }, sendOrderRequest }) => {
   const Submit = e => {
     e.preventDefault();
     let valueState = false;
+    // eslint-disable-next-line no-unused-vars
     for (const key in values) {
       if (values.hasOwnProperty(key)) {
         const element = values[key];

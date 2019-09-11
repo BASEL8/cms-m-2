@@ -4,7 +4,6 @@ import {
     REMOVE_PRODUCT,
     ORDER_DONE,
     ORDER_WAITING,
-    ORDER_FAIL
 } from "./types";
 
 export const addToCart = (product) => {

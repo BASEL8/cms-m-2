@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { addToCart } from "../../actions/cartActions";
 const BuyButton = ({ product, addToCart, cartReducer, amount, setError }) => {
-  const { error, items } = cartReducer;
+  const { error } = cartReducer;
   setError(error);
 
   const { price } = product;

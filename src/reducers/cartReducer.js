@@ -1,7 +1,6 @@
 import {
     ADD_TO_CART,
     REMOVE_PRODUCT,
-    ORDER_FAIL,
     ORDER_DONE,
     ORDER_WAITING
 } from "../actions/types";

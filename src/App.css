@@ -27,15 +27,18 @@
 
 .topNav {
   color: #1a1a1a;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.7px;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: capitalize;
   text-align: start;
   text-indent: 0px;
-  height: 80px;
   width: 100vw
+}
+
+.searchInput:focus {
+  outline: none
 }
 
 .cart {
