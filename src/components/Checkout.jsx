@@ -3,19 +3,10 @@ import { connect } from "react-redux";
 import LogoSvg from "./svg/LogoSvg";
 import { sendOrderRequest } from "../actions/cartActions";
 import { Link } from "react-router-dom";
-const Checkout = ({ cartReducer: { items, loading }, sendOrderRequest }) => {
-  const totalPrice_ =
-    (items &&
-      items.reduce(function(previous, current) {
-        return previous + current.totalPrice;
-      }, 0)) ||
-    0;
-  const totalItems =
-    (items &&
-      items.reduce(function(previous, current) {
-        return previous + current.amount;
-      }, 0)) ||
-    0;
+const Checkout = ({
+  cartReducer: { items, loading, totalPrice, totalItems },
+  sendOrderRequest
+}) => {
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -24,7 +15,7 @@ const Checkout = ({ cartReducer: { items, loading }, sendOrderRequest }) => {
     city: "",
     zip: "",
     totalItems,
-    totalPrice_,
+    totalPrice_: totalPrice,
     items:
       items &&
       items.map(({ amount, name, _id }) => ({
@@ -143,7 +134,7 @@ const Checkout = ({ cartReducer: { items, loading }, sendOrderRequest }) => {
                         <h2>Total</h2>
                       </td>
                       <td className='payment'>
-                        <h2>{totalPrice_}</h2>
+                        <h2>{totalPrice}</h2>
                       </td>
                     </tr>
                   </tbody>

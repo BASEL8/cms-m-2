@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import BuyButton from "./Buttons/BuyButton";
 import { connect } from "react-redux";
-import { fetchProduct } from "../actions/fetchData";
+import { fetchData } from "../actions/fetchData";
 import ProductTabs from "./ProductTabs";
 import { Link } from "react-router-dom";
 const Product = ({
-  fetchProduct,
+  fetchData,
   fetchDataReducer: { product },
   match: {
     params: { id }
@@ -15,8 +15,8 @@ const Product = ({
   const [amount, setAmount] = useState(1);
   const [amountError, setError] = useState(null);
   useEffect(() => {
-    fetchProduct(id, setMainImage);
-  }, [fetchProduct, id]);
+    fetchData(id, setMainImage);
+  }, [fetchData, id]);
   const {
     name,
     price,
@@ -168,5 +168,5 @@ const mapStateToProps = ({ fetchDataReducer }) => ({ fetchDataReducer });
 
 export default connect(
   mapStateToProps,
-  { fetchProduct }
+  { fetchData }
 )(Product);

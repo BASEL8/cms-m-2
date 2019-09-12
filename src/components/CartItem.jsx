@@ -5,7 +5,6 @@ const CartItem = ({
   item: { name, amount, images, price, description, totalPrice, _id },
   removeProduct
 }) => {
-  console.log(1);
   return (
     <div className='w-100 cartItem d-flex p-2'>
       {name && (

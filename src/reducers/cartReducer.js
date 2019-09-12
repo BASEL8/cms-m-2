@@ -11,19 +11,34 @@ Storage.prototype.getObject = function (key) {
     return JSON.parse(this.getItem(key));
 };
 var data = localStorage.getObject("cartShopping");
+const cartFunction = (items) => {
+    return ({
+        totalPrice: items ? items.reduce(function (previous, current) {
+            return previous + current.totalPrice;
+        }, 0) : 0,
+        totalItems: items ? items.reduce(function (previous, current) {
+            return previous + current.amount;
+        }, 0) : 0
+    })
+}
 const INITIAL_STATE = {
     ...data,
     error: '',
-    loading: false
+    loading: false,
+    ...cartFunction(data.items)
+
 };
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+
         case ADD_TO_CART:
+
             const {
                 items
             } = state;
             if (items && items.some(product => product._id === action.payload._id)) {
                 const index = items.findIndex(x => x._id === action.payload._id)
+
                 if (index !== -1 && (items[index].amount + action.payload.amount) > parseInt(items[index].availability)) {
                     return {
                         ...state,
@@ -32,16 +47,17 @@ export default (state = INITIAL_STATE, action) => {
                 } else {
                     items[index].amount = items[index].amount + action.payload.amount;
                     items[index].totalPrice = items[index].amount * parseInt(items[index].price)
+                    console.log('cartReducer')
                     localStorage.setObject('cartShopping', {
                         ...state,
                         items,
-                        error: null
+                        error: null,
                     })
-
                     return {
                         ...state,
                         items,
-                        error: null
+                        error: null,
+                        ...cartFunction(items)
                     };
                 }
             } else {
@@ -50,11 +66,12 @@ export default (state = INITIAL_STATE, action) => {
                     items: items ? [...state.items, action.payload] : [action.payload],
                     error: null
                 })
-
+                let newItems = items ? [...state.items, action.payload] : [action.payload];
                 return {
                     ...state,
-                    items: items ? [...state.items, action.payload] : [action.payload],
-                    error: null
+                    items: newItems,
+                    error: null,
+                    ...cartFunction(newItems)
                 }
             };
         case REMOVE_PRODUCT:
@@ -64,11 +81,16 @@ export default (state = INITIAL_STATE, action) => {
                     _id
                 }) => _id !== action.payload)
             })
+            console.log(state)
+            const newItems = state.items.filter(({
+                _id
+            }) => _id !== action.payload);
             return {
-                state, items: state.items.filter(({
-                    _id
-                }) => _id !== action.payload)
+                ...state,
+                items: newItems,
+                    ...cartFunction(newItems)
             };
+
         case ORDER_DONE:
             localStorage.setObject('cartShopping', [])
             return INITIAL_STATE;

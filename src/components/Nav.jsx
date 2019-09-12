@@ -5,22 +5,10 @@ import LogoSvg from "./svg/LogoSvg";
 import CartSvg from "./svg/CartSvg";
 import CartItem from "./CartItem";
 import Search from "./Search";
-const Nav = ({ cartReducer }) => {
-  const [searchActive, setSearchActive] = useState(true);
+const Nav = ({ cartReducer: { items, totalPrice, totalItems } }) => {
+  const [searchActive, setSearchActive] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
-  const { items } = cartReducer;
-  const totalItems =
-    (items &&
-      items.reduce(function(previous, current) {
-        return previous + current.amount;
-      }, 0)) ||
-    0;
-  const totalPrice =
-    (items &&
-      items.reduce(function(previous, current) {
-        return previous + current.totalPrice;
-      }, 0)) ||
-    0;
+  console.log(totalPrice);
   return (
     <div
       style={{ width: "100vw" }}
