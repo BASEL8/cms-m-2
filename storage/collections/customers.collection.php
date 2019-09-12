@@ -194,11 +194,47 @@
       array (
       ),
     ),
+    8 => 
+    array (
+      'name' => 'totalItems',
+      'label' => '',
+      'type' => 'text',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
+    9 => 
+    array (
+      'name' => 'totalPrice',
+      'label' => '',
+      'type' => 'text',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
   ),
   'sortable' => false,
   'in_menu' => false,
   '_created' => 1567753564,
-  '_modified' => 1568119703,
+  '_modified' => 1568281972,
   'color' => '#FFCE54',
   'acl' => 
   array (

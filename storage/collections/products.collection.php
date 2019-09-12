@@ -264,11 +264,29 @@
       array (
       ),
     ),
+    11 => 
+    array (
+      'name' => 'brand',
+      'label' => '',
+      'type' => 'text',
+      'default' => '',
+      'info' => '',
+      'group' => '',
+      'localize' => false,
+      'options' => 
+      array (
+      ),
+      'width' => '1-1',
+      'lst' => true,
+      'acl' => 
+      array (
+      ),
+    ),
   ),
   'sortable' => false,
   'in_menu' => false,
   '_created' => 1567753226,
-  '_modified' => 1568116167,
+  '_modified' => 1568281894,
   'color' => '#D8334A',
   'acl' => 
   array (

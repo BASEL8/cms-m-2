@@ -23,16 +23,13 @@ const CarouselItems = ({ products, interval, category }) => {
   };
 
   return (
-    <div
-      className='flex-grow-1 d-flex w-100 justify-content-center align-items-center w-100 CarouselHolder'
-      style={{ height: 500 }}
-    >
+    <div className='flex-grow-1 d-flex w-100 justify-content-center align-items-center w-100 CarouselHolder'>
       {products.length > 0 ? (
         <Carousel
           showThumbs={false}
           infiniteLoop={true}
           width='100%'
-          autoPlay={true}
+          autoPlay={false}
           interval={interval}
         >
           {products
@@ -47,7 +44,7 @@ const CarouselItems = ({ products, interval, category }) => {
                   <img
                     src={`http://localhost:9191${images[0].path}`}
                     alt={name}
-                    style={{ height: "100%", width: "auto", margin: 10 }}
+                    style={{ height: "50vw", width: "auto", margin: 10 }}
                     key={Math.random()}
                   />,
                   <div className='flex-grow-1' key={Math.random()}>
@@ -56,7 +53,7 @@ const CarouselItems = ({ products, interval, category }) => {
                   <img
                     src={`http://localhost:9191${images[1].path}`}
                     alt={name}
-                    style={{ height: "70%", width: "auto", margin: 10 }}
+                    style={{ height: "30vw", width: "auto", margin: 10 }}
                     key={Math.random()}
                   />
                 ])}

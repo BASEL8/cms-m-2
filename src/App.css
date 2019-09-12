@@ -146,6 +146,20 @@ ul {
   height: 100%;
 }
 
+.CarouselHolder {
+  height: 400px;
+}
+
+@media only screen and (max-width: 600px) {
+  .CarouselHolder {
+    height: 200px;
+  }
+
+  .slide {
+    font-size: 10px
+  }
+}
+
 .carousel.carousel-slider {
   height: 100%;
 }

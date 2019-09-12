@@ -4,7 +4,6 @@ import { addToCart } from "../../actions/cartActions";
 const BuyButton = ({ product, addToCart, cartReducer, amount, setError }) => {
   const { error } = cartReducer;
   setError(error);
-
   const { price } = product;
   return (
     <>

@@ -44,11 +44,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
+  const initialState = { name: "", content: "", rating: 1 };
   const classes = useStyles();
   const [value, setValue] = useState(2);
   const [formValues, setFormValues] = useState({
-    name: "",
     content: "",
+    name: "",
     rating: 1
   });
   const handleChange = (event, newValue) => {
@@ -56,23 +57,29 @@ const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
   };
   const SubmitReviewProduct = e => {
     e.preventDefault();
-    const reviews = [
-      ...product.reviews,
-      {
-        value: { name: "basel", content: "text", rating: 1 },
-        fields: { type: "set", label: "review" }
-      }
-    ];
-    product = { ...product, reviews };
-
-    console.log(product);
+    console.log(reviews[0]);
+    console.log(formValues);
+    product = {
+      ...product,
+      reviews: [
+        ...product.reviews,
+        {
+          value: {
+            content: formValues.content,
+            name: formValues.name,
+            rating: formValues.rating
+          }
+        }
+      ]
+    };
     reviewProduct(product);
+    setFormValues({ ...initialState });
   };
   const handleInputChange = e => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-  const { name, review, rating } = formValues;
+  const { name, content, rating } = formValues;
   return (
     <div className={classes.root}>
       <AppBar position='static'>
@@ -172,7 +179,7 @@ const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
                 className='p-1 border rounded w-100 mt-3'
                 placeholder='Review'
                 onChange={handleInputChange}
-                value={review}
+                value={content}
               />
               <div className='mt-3 mb-3'>
                 <Rating
