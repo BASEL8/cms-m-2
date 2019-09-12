@@ -15,7 +15,7 @@ const Checkout = ({
     city: "",
     zip: "",
     totalItems,
-    totalPrice_: totalPrice,
+    totalPrice,
     items:
       items &&
       items.map(({ amount, name, _id }) => ({

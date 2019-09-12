@@ -3,13 +3,6 @@ import { connect } from "react-redux";
 import CartItem from "./CartItemShoppingCart";
 import { Link } from "react-router-dom";
 const ShoppingCart = ({ cartReducer: { items, totalPrice, totalItems } }) => {
-  console.log(totalPrice);
-  // const totalItems = items.reduce(function(previous, current) {
-  //   return previous + current.amount;
-  // }, 0);
-  // const totalPrice = items.reduce(function(previous, current) {
-  //   return previous + current.totalPrice;
-  // }, 0);
   return (
     <div className='flex-grow-1 ml-5 mr-5 p-3 w-75 d-flex justify-content-stretch align-items-stretch'>
       <div className='mr-4 p-3 bg-light' style={{ flex: 3 }}>

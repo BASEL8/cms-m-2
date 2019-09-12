@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import LogoSvg from "./svg/LogoSvg";
 import CartSvg from "./svg/CartSvg";
 import CartItem from "./CartItem";
 import Search from "./Search";
-const Nav = ({ cartReducer: { items, totalPrice, totalItems } }) => {
+import { fetchData } from "../actions/fetchData";
+
+const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
   const [searchActive, setSearchActive] = useState(false);
   const [toggleCart, setToggleCart] = useState(false);
-  console.log(totalPrice);
+  const cart = useRef();
+  const search = useRef();
+
+  OnClickOutside(search, setSearchActive);
+  OnClickOutside(cart, setToggleCart);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
   return (
     <div
       style={{ width: "100vw" }}
@@ -73,7 +82,7 @@ const Nav = ({ cartReducer: { items, totalPrice, totalItems } }) => {
             {totalItems}
           </p>
           {toggleCart && (
-            <div className='cart p-2 d-flex flex-column shadow-sm'>
+            <div className='cart p-2 d-flex flex-column shadow-sm' ref={cart}>
               <h6 className='text-center p-4 font-weight-bold'>
                 Shopping cart
               </h6>
@@ -126,7 +135,11 @@ const Nav = ({ cartReducer: { items, totalPrice, totalItems } }) => {
             <li className='mr-3 text-sm'>Outlet</li>
           </ul>
         )}
-        <div className='search' style={{ flex: 1 }}>
+        <div
+          className='search'
+          style={{ flex: searchActive ? 1 : 0 }}
+          ref={search}
+        >
           <div className='d-flex  d-flex justify-content-center align-items-center'>
             {searchActive && <span className='w-25'></span>}
             <Search setSearchActive={setSearchActive} />
@@ -160,4 +173,22 @@ const Nav = ({ cartReducer: { items, totalPrice, totalItems } }) => {
 const mapStateToProps = ({ cartReducer }) => ({
   cartReducer
 });
-export default connect(mapStateToProps)(Nav);
+export default connect(
+  mapStateToProps,
+  { fetchData }
+)(Nav);
+
+function OnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = event => {
+      if (!ref.current || ref.current.contains(event.target)) return;
+      handler();
+    };
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [handler, ref]);
+}

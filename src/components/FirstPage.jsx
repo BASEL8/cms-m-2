@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CarouselItems from "./CarouselItems";
 import Products from "./products";
 import { connect } from "react-redux";
-import { fetchData } from "../actions/fetchData";
-const FirstPage = ({ fetchData, fetchDataReducer: { products } }) => {
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+const FirstPage = ({ fetchDataReducer: { products } }) => {
   const man = products.filter(({ category }) => category === "man");
   const women = products.filter(({ category }) => category === "women");
   const kids = products.filter(({ category }) => category === "kids");
@@ -24,7 +20,4 @@ const FirstPage = ({ fetchData, fetchDataReducer: { products } }) => {
 };
 const mapStateToProps = ({ fetchDataReducer }) => ({ fetchDataReducer });
 
-export default connect(
-  mapStateToProps,
-  { fetchData }
-)(FirstPage);
+export default connect(mapStateToProps)(FirstPage);

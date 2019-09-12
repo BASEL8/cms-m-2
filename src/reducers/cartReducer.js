@@ -47,7 +47,6 @@ export default (state = INITIAL_STATE, action) => {
                 } else {
                     items[index].amount = items[index].amount + action.payload.amount;
                     items[index].totalPrice = items[index].amount * parseInt(items[index].price)
-                    console.log('cartReducer')
                     localStorage.setObject('cartShopping', {
                         ...state,
                         items,
@@ -81,7 +80,6 @@ export default (state = INITIAL_STATE, action) => {
                     _id
                 }) => _id !== action.payload)
             })
-            console.log(state)
             const newItems = state.items.filter(({
                 _id
             }) => _id !== action.payload);
