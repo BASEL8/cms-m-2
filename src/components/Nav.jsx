@@ -54,13 +54,13 @@ const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
         <div style={{ flex: 1 }} className=' '>
           <ul className='d-flex m-0  pr-5 align-items-center justify-content-between'>
             <li className='flex-grow-1'>
-              <Link to='/'>KVINNA</Link>
+              <Link to='/category/women'>KVINNA</Link>
             </li>
             <li className='flex-grow-1 d-flex justify-content-center'>
-              <Link to='/'>MAN</Link>
+              <Link to='/category/man'>MAN</Link>
             </li>
             <li className='flex-grow-1 d-flex justify-content-center'>
-              <Link to='/'>BARN</Link>
+              <Link to='/category/kids'>BARN</Link>
             </li>
           </ul>
         </div>

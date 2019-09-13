@@ -474,3 +474,50 @@ a {
 .MuiBox-root.MuiBox-root-100 {
   padding: 0
 }
+
+
+
+
+.pagination {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin: 0;
+  height: 50px;
+}
+
+
+
+.pagination li.selected a:focus {
+  outline: navy;
+
+}
+
+.pagination li {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination li a {
+  color: #212529;
+  padding: 10px;
+  font-size: 10px;
+  cursor: pointer
+}
+
+.pagination li a:focus {
+  outline: none
+}
+
+.pagination li.selected a {
+  color: #5c5e5f;
+  color: #FF4E00 !important
+}
+
+.previous.disabled a,
+.next.disabled a {
+  color: white
+}

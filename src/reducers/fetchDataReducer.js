@@ -1,11 +1,13 @@
 import {
     UPDATE_DATA,
     FETCH_PRODUCT,
-    REVIEW_PRODUCT
+    REVIEW_PRODUCT,
+    FETCH_CATEGORY
 } from "../actions/types";
 const INITIAL_STATE = {
     products: [],
-    product: {}
+    product: {},
+    productsCategory: []
 };
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -20,7 +22,11 @@ export default (state = INITIAL_STATE, action) => {
         case REVIEW_PRODUCT:
             console.log('connected')
             return state;
-        default:
-            return state;
+        case FETCH_CATEGORY:
+            return {
+                ...state, productsCategory: action.payload
+            }
+            default:
+                return state;
     }
 }

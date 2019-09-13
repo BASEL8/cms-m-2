@@ -2,7 +2,9 @@ import axios from 'axios'
 import {
     UPDATE_DATA,
     FETCH_PRODUCT,
+    FETCH_CATEGORY
 } from "./types";
+
 export const fetchData = (productsFilter, setMainImage) => {
     return (dispatch) => {
         axios({
@@ -73,7 +75,44 @@ export const reviewProduct = (data) => {
             });
         })
     }
+}
 
+export const fetchCategory = (category, Paginate, setPaginate) => {
+    return (dispatch) => {
+        axios({
+            method: "post",
+            url: "http://localhost:9191/api/collections/get/products?token=9c31ae75f9b25dcb7950a9606518f3",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                populate: 3,
+                filter: {
+                    category
+                },
+                limit: 9,
+                skip: Paginate.skip,
+                //sort: { [sortArticles.name]: sortArticles.direction },
+            }
+        }).then(({
+            data,
+            data: {
+                entries,
+                fields,
+                total
+            }
+        }) => {
+            console.log(total)
+            setPaginate({
+                ...Paginate,
+                pageCount: Math.ceil(total / 3)
+            });
+            dispatch({
+                type: FETCH_CATEGORY,
+                payload: entries
+            })
 
+        });
 
+    };
 }
