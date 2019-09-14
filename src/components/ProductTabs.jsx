@@ -160,8 +160,8 @@ const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
         </div>
       </TabPanel>
       <TabPanel value={value} index={2} style={{ minHeight: 300 }}>
-        <div className='d-flex h-100 justify-content-around  bg-white p-4'>
-          <div className='p-2 col pr-5 w-75 mr-2 shadow-sm'>
+        <div className='d-sm-flex h-100 justify-content-around  bg-white p-1'>
+          <div className='p-1 col shadow-sm'>
             <p className='font-weight-lighter text-monospace text-muted'>
               write your review
             </p>
@@ -217,7 +217,7 @@ const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
             </form>
           </div>
           <div
-            className='col-4 overflow-auto d-flex justify-content-start align-items-start ml-2 d-flex flex-column justify-content-start'
+            className='col overflow-auto p-0 ml-sm-3  mt-3 mt-md-0 justify-content-start align-items-start d-flex flex-column justify-content-start'
             style={{ maxHeight: 300 }}
           >
             {reviews ? (

@@ -33,13 +33,16 @@ const Product = ({
       className='flex-grow-1 w-100 h-100 p-2  flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap text-capitalize
     '
     >
-      <div className='flex-grow-1 d-flex justify-content-center align-items-start col'>
-        <div className='h-100'>
+      <div className='flex-grow-1 d-column justify-content-center align-items-start col mb-2'>
+        <div className='flex-grow-1 d-flex justify-content-start align-items-start'>
+          <img src={mainImage} alt='' className='product_image_' />
+        </div>
+        <div className='h-100 d-flex pt-1 overflow-auto w-100'>
           {images &&
             images.map((image, index) => (
               <div
                 key={index}
-                className='pb-1 mb-1 sideImage'
+                className='sideImage mr-1'
                 onMouseOver={() =>
                   setMainImage(`http://localhost:9191${image.path}`)
                 }
@@ -51,9 +54,6 @@ const Product = ({
                 />
               </div>
             ))}
-        </div>
-        <div className='flex-grow-1 d-flex justify-content-center align-items-start'>
-          <img src={mainImage} alt='' className='product_image_' />
         </div>
       </div>
       <div className='flex-grow-1 d-flex flex-column justify-content-start align-items-start col pb-5 '>

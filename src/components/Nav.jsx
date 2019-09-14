@@ -21,12 +21,9 @@ const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
   return (
     <div
       style={{ width: "100vw" }}
-      className='shadow mb-2 p-0 topNav d-flex flex-column'
+      className='shadow mb-2 p-0 nav d-flex flex-column pl-2 pr-2 '
     >
-      <div
-        className='d-flex justify-content-around bg-light text-muted align-items-center font-weight-bolder pl-5 pr-5'
-        style={{ fontSize: 10, height: 30 }}
-      >
+      <div className='d-flex justify-content-around bg-light text-muted align-items-center font-weight-bolder navTop'>
         <div
           style={{ flex: 1 }}
           className='  d-flex d-flex justify-content-start align-items-center'
@@ -50,13 +47,13 @@ const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
           </p>
         </div>
       </div>
-      <div className='pl-5 pr-5 p-2 w-100 d-flex justify-content-around align-items-center '>
+      <div className='p-2 w-100 d-flex justify-content-around align-items-center '>
         <div style={{ flex: 1 }} className=' '>
           <ul className='d-flex m-0  pr-5 align-items-center justify-content-between'>
-            <li className='flex-grow-1'>
+            <li className='flex-grow-1 mr-1'>
               <Link to='/category/women'>KVINNA</Link>
             </li>
-            <li className='flex-grow-1 d-flex justify-content-center'>
+            <li className='flex-grow-1 d-flex justify-content-center mr-1'>
               <Link to='/category/man'>MAN</Link>
             </li>
             <li className='flex-grow-1 d-flex justify-content-center'>
@@ -116,11 +113,10 @@ const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
           )}
         </div>
       </div>
-
-      <div className='d-flex justify-content-around align-items-center font-weight-bolder pt-2 pb-2  pl-5 pr-5'>
+      <div className='d-flex justify-content-around align-items-center d-lg-none font-weight-bolder pt-2 pb-2  '>
         {!searchActive && (
           <ul
-            className='d-flex m-0 flex-grow-1'
+            className='d-flex m-0 flex-grow-1 flex-wrap'
             style={{ fontSize: 11, fontWeight: 100 }}
           >
             <li className='mr-3 text-sm'>Athleisure</li>
@@ -134,7 +130,7 @@ const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
             <li className='mr-3 text-sm'>Märken</li>
             <li className='mr-3 text-sm'>Outlet</li>
           </ul>
-        )}
+        )}{" "}
         <div
           className='search'
           style={{ flex: searchActive ? 1 : 0 }}

@@ -60,7 +60,7 @@ const Checkout = ({
       style={{ fontSize: 15 }}
     >
       {items && items.length > 0 && (
-        <div className='pt-5 pb-5  flex-grow-1 col-5 p-3 shadow-sm'>
+        <div className='pt-5 pb-5  flex-grow-1 shadow-sm'>
           <div id='invoice-POS'>
             <center
               id='top'

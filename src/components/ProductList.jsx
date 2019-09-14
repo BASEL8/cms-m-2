@@ -9,7 +9,7 @@ const ProductList = ({
     `http://localhost:9191${images[0].path}`
   );
   return (
-    <div className='col-6 col-sm-4 d-flex p-1'>
+    <div className='d-flex p-1'>
       <Link
         to={`/product/${_id}`}
         className='d-flex justify-content-center w-100'
