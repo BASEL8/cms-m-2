@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import BuyButton from "./Buttons/BuyButton";
 import { connect } from "react-redux";
 import { fetchData } from "../actions/fetchData";
+import { viewedProduct } from "../actions/cartActions";
 import ProductTabs from "./ProductTabs";
 import { Link } from "react-router-dom";
+import ViewedProducts from "./ViewedProducts";
 const Product = ({
+  viewedProduct,
   fetchData,
   fetchDataReducer: { product },
+  cartReducer: { viewedProducts },
   match: {
     params: { id }
   }
@@ -17,6 +21,9 @@ const Product = ({
   useEffect(() => {
     fetchData(id, setMainImage);
   }, [fetchData, id]);
+  useEffect(() => {
+    viewedProduct(product);
+  }, [product, viewedProduct]);
   const {
     name,
     price,
@@ -27,14 +34,13 @@ const Product = ({
     color,
     _id
   } = product;
-
   return (
     <div
       className='flex-grow-1 w-100 h-100 p-2  flex-md-row flex-column d-flex align-items-stretch justify-content-center flex-wrap text-capitalize
     '
     >
       <div className='flex-grow-1 d-column justify-content-center align-items-start col mb-2'>
-        <div className='flex-grow-1 d-flex justify-content-start align-items-start'>
+        <div className='flex-grow-1 d-flex justify-content-center align-items-start mb-2'>
           <img src={mainImage} alt='' className='product_image_' />
         </div>
         <div className='h-100 d-flex pt-1 overflow-auto w-100'>
@@ -56,6 +62,7 @@ const Product = ({
             ))}
         </div>
       </div>
+
       <div className='flex-grow-1 d-flex flex-column justify-content-start align-items-start col pb-5 '>
         <p
           style={{
@@ -81,6 +88,7 @@ const Product = ({
           <span style={{ fontSize: 14, fontWeight: "bold" }}>
             {" "}
             {color &&
+              color.value &&
               color.filter(({ value: { link } }) => link._id === _id)[0].value
                 .color}
           </span>
@@ -173,6 +181,9 @@ const Product = ({
           {amountError}
         </p>
       </div>
+      <ViewedProducts
+        viewed={viewedProducts.filter(product => product._id !== _id)}
+      />
       <div className='pt-4 w-100'>
         <ProductTabs
           product={product}
@@ -183,9 +194,12 @@ const Product = ({
     </div>
   );
 };
-const mapStateToProps = ({ fetchDataReducer }) => ({ fetchDataReducer });
+const mapStateToProps = ({ fetchDataReducer, cartReducer }) => ({
+  fetchDataReducer,
+  cartReducer
+});
 
 export default connect(
   mapStateToProps,
-  { fetchData }
+  { fetchData, viewedProduct }
 )(Product);

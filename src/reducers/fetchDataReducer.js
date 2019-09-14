@@ -25,8 +25,8 @@ export default (state = INITIAL_STATE, action) => {
         case FETCH_CATEGORY:
             return {
                 ...state, productsCategory: action.payload
-            }
-            default:
-                return state;
+            };
+        default:
+            return state;
     }
 }

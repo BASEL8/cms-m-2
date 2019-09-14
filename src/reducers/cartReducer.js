@@ -2,7 +2,8 @@ import {
     ADD_TO_CART,
     REMOVE_PRODUCT,
     ORDER_DONE,
-    ORDER_WAITING
+    ORDER_WAITING,
+    VIEWED_PRODUCT
 } from "../actions/types";
 Storage.prototype.setObject = function (key, value) {
     this.setItem(key, JSON.stringify(value));
@@ -10,8 +11,9 @@ Storage.prototype.setObject = function (key, value) {
 Storage.prototype.getObject = function (key) {
     return JSON.parse(this.getItem(key));
 };
-var data = localStorage.getObject("cartShopping");
-const cartFunction = (items) => {
+var data = localStorage.getObject("cartShopping") ? localStorage.getObject("cartShopping") : [];
+
+const cartCalculateFunction = (items) => {
     return ({
         totalPrice: items ? items.reduce(function (previous, current) {
             return previous + current.totalPrice;
@@ -25,7 +27,8 @@ const INITIAL_STATE = {
     ...data,
     error: '',
     loading: false,
-    ...cartFunction(data.items)
+    ...cartCalculateFunction(data.items),
+    viewedProducts: JSON.parse(localStorage.getItem("ViewedProducts")) ? JSON.parse(localStorage.getItem("ViewedProducts")) : []
 
 };
 export default (state = INITIAL_STATE, action) => {
@@ -56,7 +59,7 @@ export default (state = INITIAL_STATE, action) => {
                         ...state,
                         items,
                         error: null,
-                        ...cartFunction(items)
+                        ...cartCalculateFunction(items)
                     };
                 }
             } else {
@@ -70,7 +73,7 @@ export default (state = INITIAL_STATE, action) => {
                     ...state,
                     items: newItems,
                     error: null,
-                    ...cartFunction(newItems)
+                    ...cartCalculateFunction(newItems)
                 }
             };
         case REMOVE_PRODUCT:
@@ -86,7 +89,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 items: newItems,
-                    ...cartFunction(newItems)
+                    ...cartCalculateFunction(newItems)
             };
 
         case ORDER_DONE:
@@ -97,7 +100,17 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: true
             };
-        default:
-            return state;
+        case VIEWED_PRODUCT:
+            if (action.payload._id && !state.viewedProducts.filter(({
+                    _id
+                }) => _id === action.payload._id).length > 0) {
+                localStorage.setItem("ViewedProducts", JSON.stringify([...state.viewedProducts, action.payload]))
+            }
+            return {
+                ...state,
+                viewedProducts: JSON.parse(localStorage.getItem("ViewedProducts")) ? JSON.parse(localStorage.getItem("ViewedProducts")) : []
+            }
+            default:
+                return state;
     }
 }

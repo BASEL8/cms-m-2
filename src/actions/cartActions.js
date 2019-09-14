@@ -4,6 +4,7 @@ import {
     REMOVE_PRODUCT,
     ORDER_DONE,
     ORDER_WAITING,
+    VIEWED_PRODUCT
 } from "./types";
 
 export const addToCart = (product) => {
@@ -36,4 +37,12 @@ export const sendOrderRequest = (data) => {
 
             });
     };
+}
+export const viewedProduct = (product) => {
+    return (dispatch) => {
+        dispatch({
+            type: VIEWED_PRODUCT,
+            payload: product
+        })
+    }
 }

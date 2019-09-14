@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
 const ProductTabs = ({ reviews, description, reviewProduct, product }) => {
   const initialState = { name: "", content: "", rating: 1 };
   const classes = useStyles();
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(0);
   const [formValues, setFormValues] = useState({
     content: "",
     name: "",

@@ -2,14 +2,8 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import ProductList from "./ProductList";
-import Whirligig from "react-whirligig";
-import LeftSVG from "./svg/left";
-import RightSVG from "./svg/right";
+import ScrollProducts from "./ScrollProducts";
 const CarouselItems = ({ products, interval, category }) => {
-  let whirligig;
-  const next = () => whirligig.next();
-  const prev = () => whirligig.prev();
   const shuffle = array => {
     var currentIndex = array.length,
       temporaryValue,
@@ -26,7 +20,7 @@ const CarouselItems = ({ products, interval, category }) => {
   };
 
   return (
-    <div className='flex-grow-1 w-100 mb-5 border-bottom  '>
+    <div className='flex-grow-1 w-100 mb-5 border-bottom  bg-light shadow-sm'>
       <div className='flex-grow-1 d-flex w-100 justify-content-center align-items-center w-100 CarouselHolder pb-2'>
         {products.length > 0 ? (
           <Carousel
@@ -36,7 +30,7 @@ const CarouselItems = ({ products, interval, category }) => {
             autoPlay={false}
             interval={interval}
           >
-            {products
+            {shuffle(products)
               .filter(({ carousel }) => carousel)
               .map(({ name, _id, images }) => (
                 <Link
@@ -82,28 +76,11 @@ const CarouselItems = ({ products, interval, category }) => {
       <div className='text-center p-3 font-weight-bolder text-uppercase'>
         {products[0] && products[0].category}
       </div>
-      <div className='w-100 d-flex justify-content-end'>
-        <div className='w-100 pt-1 d-flex justify-content-end pb-5'>
-          <button onClick={prev} className='btn btn-sm'>
-            <LeftSVG />
-          </button>
-          <Whirligig
-            visibleSlides={3}
-            gutter='10px'
-            ref={_whirligigInstance => {
-              whirligig = _whirligigInstance;
-            }}
-            className='pt-2 d-flex overflow-y-auto productsSlider w-md-75 w-100'
-          >
-            {shuffle(products).map(product => (
-              <ProductList product={product} key={product._id} />
-            ))}
-          </Whirligig>
-          <button onClick={next} className='btn btn-sm'>
-            <RightSVG />
-          </button>
-        </div>
-      </div>
+      <ScrollProducts
+        products={products}
+        shuffle={shuffle}
+        viewThumbnail={true}
+      />
     </div>
   );
 };

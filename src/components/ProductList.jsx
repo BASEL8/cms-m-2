@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const ProductList = ({
+  viewThumbnail,
   product: { images, name, price, Rating, availability, _id }
 }) => {
   const [showImages, setShowImages] = useState(false);
@@ -24,7 +25,7 @@ const ProductList = ({
               <img src={mainImage} alt={name} />
             </div>
 
-            {showImages && (
+            {viewThumbnail && showImages && (
               <div className='p-1 d-flex flex-column position-absolute'>
                 {images.map((image, index) => (
                   <div
