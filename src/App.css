@@ -215,9 +215,33 @@ ul {
 
 }
 
+@media only screen and (max-width: 380px) {
+
+
+  .product_image {
+    height: 80px;
+  }
+
+
+
+}
 
 .carousel.carousel-slider {
   height: 100%;
+}
+
+.carousel .control-dots .dot.selected {
+  background: #FF4E00 !important;
+}
+
+.carousel .control-dots .dot:focus {
+  outline: none
+}
+
+.carousel .control-dots .dot {
+  background: rgba(255, 77, 0, 0.432) !important;
+  box-shadow: none !important;
+  margin: 0 2px !important;
 }
 
 .slider,

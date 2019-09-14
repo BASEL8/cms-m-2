@@ -1,6 +1,5 @@
 import React from "react";
-import CarouselItems from "./CarouselItems";
-import Products from "./products";
+import SectionItem from "./SectionItem";
 import { connect } from "react-redux";
 const FirstPage = ({ fetchDataReducer: { products } }) => {
   const man = products.filter(({ category }) => category === "man");
@@ -9,12 +8,9 @@ const FirstPage = ({ fetchDataReducer: { products } }) => {
 
   return (
     <>
-      <CarouselItems interval={3000} products={man} />
-      <Products products={man} />
-      <CarouselItems interval={5000} products={kids} />
-      <Products products={kids} />
-      <CarouselItems interval={5000} products={women} />
-      <Products products={women} />
+      <SectionItem interval={3000} products={man} />
+      <SectionItem interval={5000} products={kids} />
+      <SectionItem interval={5000} products={women} />
     </>
   );
 };

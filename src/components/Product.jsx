@@ -73,35 +73,54 @@ const Product = ({
         >
           {name}
         </p>
-        <div className='d-flex'>
+        <div
+          className='pt-3 pb-3 responsive-font-sizes '
+          style={{ fontSize: 12 }}
+        >
+          color :{" "}
+          <span style={{ fontSize: 14, fontWeight: "bold" }}>
+            {" "}
+            {color &&
+              color.filter(({ value: { link } }) => link._id === _id)[0].value
+                .color}
+          </span>
+        </div>
+        <div className='d-flex pt-2 pb-2'>
           {color &&
             color.length > 1 &&
-            color.map(
-              ({ value }) =>
-                value.link && (
-                  <Link
-                    to={`/product/${value.link._id}`}
-                    className='d-flex justify-content-center w-100'
-                    key={value.link._id}
-                  >
-                    <div className='mr-1'>
-                      <img
-                        src={`http://localhost:9191${value.link.images[0].path}`}
-                        alt={value.color}
-                        style={{
-                          height: 50,
-                          borderBottom:
-                            _id === value.link._id && "4px solid black",
-                          marginBottom: 5
-                        }}
-                      />
-                      <p style={{ fontSize: 11 }}>
-                        <strong> {value.color}</strong>
-                      </p>
-                    </div>
-                  </Link>
-                )
-            )}
+            color
+              .sort((a, b) => {
+                if (a.value.color < b.value.color) {
+                  return -1;
+                }
+                if (a.value.color > b.value.color) {
+                  return 1;
+                }
+                return 0;
+              })
+              .map(
+                ({ value }) =>
+                  value.link && (
+                    <Link
+                      to={`/product/${value.link._id}`}
+                      className='d-flex justify-content-center w-100'
+                      key={value.link._id}
+                    >
+                      <div className='mr-1'>
+                        <img
+                          src={`http://localhost:9191${value.link.images[0].path}`}
+                          alt={value.color}
+                          style={{
+                            height: 50,
+                            borderBottom:
+                              _id === value.link._id && "4px solid black",
+                            marginBottom: 5
+                          }}
+                        />
+                      </div>
+                    </Link>
+                  )
+              )}
         </div>
 
         <h5 style={{ fontWeight: 700, fontSize: 15 }}>

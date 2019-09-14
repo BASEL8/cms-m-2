@@ -59,7 +59,7 @@ const ProductList = ({
                     width='15'
                     height='15'
                     viewBox='0 0 24 24'
-                    fill='gold'
+                    fill='#FF4E00'
                     style={{ margin: 1 }}
                     key={index}
                   >

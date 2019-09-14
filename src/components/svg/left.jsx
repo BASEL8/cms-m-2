@@ -6,7 +6,7 @@ const LeftSVG = () => {
       id='Layer_1'
       x='0px'
       y='0px'
-      width='40px'
+      width='20px'
       viewBox='0 0 455 455'
       fill='#FF4E00'
     >

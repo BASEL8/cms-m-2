@@ -113,10 +113,10 @@ const Nav = ({ fetchData, cartReducer: { items, totalPrice, totalItems } }) => {
           )}
         </div>
       </div>
-      <div className='d-flex justify-content-around align-items-center d-lg-none font-weight-bolder pt-2 pb-2  '>
+      <div className=' justify-content-around align-items-center  d-flex font-weight-bolder pt-2 pb-2  '>
         {!searchActive && (
           <ul
-            className='d-flex m-0 flex-grow-1 flex-wrap'
+            className='d-md-flex m-0 flex-grow-1 flex-wrap d-none'
             style={{ fontSize: 11, fontWeight: 100 }}
           >
             <li className='mr-3 text-sm'>Athleisure</li>

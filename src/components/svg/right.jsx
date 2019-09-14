@@ -10,7 +10,7 @@ const RightSVG = () => {
       viewBox='0 0 455 455'
       style={{ enableBackground: "new 0 0 455 455" }}
       fill='#FF4E00'
-      width='40px'
+      width='20px'
     >
       <path
         d='M227.5,0C101.855,0,0,101.855,0,227.5S101.855,455,227.5,455S455,353.145,455,227.5S353.145,0,227.5,0z M199.476,355.589
