@@ -9,7 +9,7 @@ import Checkout from "./Checkout";
 import Category from "./Category";
 const Main = () => {
   return (
-    <div className='d-flex flex-column App-header pl-3 pr-3 pt-0'>
+    <div className='d-flex flex-column App-header pl-5 pr-5 pt-0'>
       <Router>
         <Nav />
         <Route path='/' exact component={props => <FirstPage {...props} />} />

@@ -15,7 +15,7 @@ const ViewedProducts = ({ viewed }) => {
     }
     return array;
   };
-  return viewed ? (
+  return viewed.length > 0 ? (
     <div
       className='pt-3 mt-3 pb-3 mb-3 w-100 border-top border-light bg-light shadow-sm'
       id='viewedProducts'
